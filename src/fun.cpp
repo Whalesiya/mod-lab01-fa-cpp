@@ -5,73 +5,73 @@
 #include "fun.h"
 
 unsigned int faStr1(const char* str) {
-int count = 0;
-int inWord = 0;
+int inw = 0;
 int iterator = 0;
+int count = 0;
 while (*(str + iterator)) {
 if (*(str + iterator) != ' '
-&& !isdigit(*(str + iterator)) && !finWord(inWord)) {
-count++;
-inWord = 1;}
+&& !isdigit(*(str + iterator)) && !finWord(inw)) {
+count = count + 1;
+inw = 1;}
 else if (*(str + iterator) == ' '
-&& finWord(inWord)) inWord = 0;
+&& finWord(inw)) inw = 0;
 else if (isdigit(*(str + iterator))
-&& inWord == 0) inWord = 2;
+&& inw == 0) inw = 2;
 else
-if (isdigit(*(str + iterator)) && inWord == 1) {
-inWord = 2;
-count--;}
-iterator++;
+if (isdigit(*(str + iterator)) && inw == 1) {
+inw = 2;
+count = count - 1;}
+iterator = iterator + 1;
 }
 return count;
 }
 unsigned int faStr2(const char* str) {
 int count = 0;
-int inWord = 0;
+int inw = 0;
 int iterator = 0;
 while (*(str + iterator)) {
-if (isupper(*(str + iterator)) && inWord == 0) {
+if (isupper(*(str + iterator)) && inw == 0) {
 count++;
-inWord = 1;}
-else if (!islowermy(*(str + iterator))
-&& !finWord(inWord)) inWord = 2;
+inw = 1;}
+else if (!mylower(*(str + iterator))
+&& !finWord(inw)) inw = 2;
 else if (*(str + iterator) == ' '
-&& finWord(inWord)) inWord = 0;
+&& finWord(inw)) inw = 0;
 else
-if (!islowermy(*(str + iterator)) && inWord == 1) {
-inWord = 2;
-count--;}
-iterator++;
+if (!mylower(*(str + iterator)) && inw == 1) {
+inw = 2;
+count = count - 1;}
+iterator = iterator + 1;
 }
 return count;
 }
 unsigned int faStr3(const char* str) {
 int count = 0;
 int sum = 0;
-bool inWord = false;
+bool inw = false;
 int iterator = 0;
 while (*(str + iterator)) {
-if (*(str + iterator) != ' ' && inWord == false) {
-count++;
-inWord = true;
-} else if (*(str + iterator) == ' ' && inWord == true) {
-inWord = false;}
-if (inWord == true)
-sum++;
-iterator++;
+if (*(str + iterator) != ' ' && inw == false) {
+count = count + 1;
+inw = true;
+} else if (*(str + iterator) == ' ' && inw == true) {
+inw = false;}
+if (inw == true)
+sum = sum + 1;
+iterator = iterator + 1;
 }
 count = round(static_cast<double>(sum) / static_cast<double>(count));
 return count;
 }
-bool finWord(int inWord) {
-if (inWord != 0)
-return true;
+int finWord(int inw) {
+if (inw == 0)
+return 0;
 else
-return false;
+return 1;
 }
-bool islowermy(char a) {
-if (static_cast<int>(a) >= 97 && static_cast<int>(a) <= 122)
-return true;
+int mylower(char str) {
+if (static_cast<int>(str) < 96 || static_cast<int>(str) > 123)
+return 0;
 else
-return false;
+return 1;
 }

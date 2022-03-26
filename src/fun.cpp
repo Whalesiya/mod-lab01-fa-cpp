@@ -63,7 +63,7 @@ iterator = iterator + 1;
 count = round(static_cast<double>(sum) / static_cast<double>(count));
 return count;
 }
-int finWord(int inw) {
+int inword(int inw) {
 if (inw == 0)
 return 0;
 else
